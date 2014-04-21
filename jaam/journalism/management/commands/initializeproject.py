@@ -2,8 +2,8 @@ from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import Group, Permission, User
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from projects.models import Project
-from photos.models import Photo
+from jaam.projects.models import Project
+from jaam.photos.models import Photo
 
 class Command(BaseCommand):
     help = 'Creates Journalist group and assigns default permissions'
@@ -72,5 +72,5 @@ class Command(BaseCommand):
             default_photo.slug = "default"
             default_photo.caption = "The default photo"
             default_photo.journalist = User.objects.get(username="Default")
-            default_photo.image = "http://i.imgur.com/uxRkD.jpg"
+            default_photo.image = "/s/static/common/graphics/photo-placeholder.jpg"
             default_photo.save()

@@ -139,9 +139,12 @@ def create_exif(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Photo)
 def read_exif(sender, instance, **kwargs):
-    img_file = urllib.urlopen(instance.image.url)
-    im = StringIO(img_file.read())
-    image = Image.open(im)
+    try:
+        img_file = urllib.urlopen(instance.image.url)
+        im = StringIO(img_file.read())
+        image = Image.open(im)
+    except urllib.HTTPError:
+        return
 
     try:
         photo_exif = image._getexif()
