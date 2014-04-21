@@ -1,9 +1,11 @@
 Initial Setup
 =============
 
-* Install pip `sudo apt-get install python-pip`
+* Install pip and virtualenv
 
-* `cd jaam/jaam && pip install -r requirements.txt` (use sudo if appropriate)
+* Create a virtualenv and activate it
+
+* `cd jaam/jaam && pip2 install -r requirements.txt`
 
 * Follow the local development tips to get a sqlite3 database up and running.
 
@@ -12,10 +14,14 @@ Local Development Tips
 
 During local development, you now need to execute the following anytime you delete the database and start from scratch and remember to skip original creation of superuser:
 
-    python manage.py syncdb  (do not create a superuser at this time)
-    python manage.py migrate
-    python manage.py initializeproject
-    python manage.py createsuperuser
+    python2 manage.py syncdb  (do not create a superuser at this time)
+    python2 manage.py migrate
+    python2 manage.py initializeproject
+    python2 manage.py createsuperuser
+
+And then run the local dev server:
+
+    python2 manage.py runserver
 
 Additionally, you will need to access the site in a specific way for the social auth to work: Add `dev.jaam.us.to` to your `HOSTS` file and point it at your development machine (usually `localhost` or `127.0.0.1`). Now you can access the development server through the new hostname, for example: http://dev.jaam.us.to:8000 after running the dev server.
 
